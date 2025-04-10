@@ -50,7 +50,6 @@
                             </div>
                         @endif
 
-
                         <form action="{{ route('cart.add') }}" method="POST" class="mt-4">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">

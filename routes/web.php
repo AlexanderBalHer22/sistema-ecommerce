@@ -42,4 +42,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 require __DIR__ . '/auth.php';
-
