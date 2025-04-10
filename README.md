@@ -1,66 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema E-commerce Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto implementa un sistema de gestión de productos para e-commerce utilizando Laravel.
 
-## About Laravel
+## Características
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Gestión completa de productos (CRUD)**
+- **Categorización** de productos
+- **Etiquetado** para mejorar la búsqueda
+- **Carga de imágenes** para productos
+- **Búsqueda y filtrado** avanzado
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP >= 8.1
+- Composer
+- MySQL o SQLite
+- Node.js y NPM (para los assets)
+- Extensión GD de PHP (para manejo de imágenes)
 
-## Learning Laravel
+## Instalación
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clonar el repositorio:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   ```bash
+   git clone https://github.com/tu-usuario/sistema-ecommerce.git
+   cd sistema-ecommerce
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Instalar dependencias:
 
-## Laravel Sponsors
+   ```bash
+   composer install
+   npm install
+   npm run build
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Configurar el entorno:
 
-### Premium Partners
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. Configurar la base de datos en el archivo `.env`
 
-## Contributing
+5. Ejecutar migraciones y seeders:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## Code of Conduct
+6. Crear enlace simbólico para el almacenamiento:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   php artisan storage:link
+   ```
 
-## Security Vulnerabilities
+7. Iniciar el servidor:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   php artisan serve
+   ```
 
-## License
+## Estructura del Proyecto
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Modelos
+
+El proyecto utiliza los siguientes modelos:
+
+- **Product**: Representa un producto con propiedades como nombre, descripción, precio, etc.
+- **Category**: Permite clasificar los productos en categorías.
+- **Tag**: Permite asignar etiquetas a los productos para facilitar la búsqueda.
+
+### Relaciones entre Modelos
+
+- Un `Product` pertenece a una `Category` (relación muchos a uno)
+- Un `Product` puede tener muchos `Tag` y un `Tag` puede estar asociado a muchos `Product` (relación muchos a muchos)
+
+## Funcionalidades
+
+### Gestión de Productos
+
+- **Listar productos**: Visualización paginada con opciones de búsqueda y filtro.
+- **Ver detalles**: Información completa de un producto con su imagen, categoría y etiquetas.
+- **Crear productos**: Formulario con validación para añadir nuevos productos con imágenes.
+- **Editar productos**: Actualización de cualquier propiedad de un producto existente.
+- **Eliminar productos**: Eliminación de productos con confirmación.
+
+### Búsqueda y Filtrado
+
+- Búsqueda por nombre de producto
+- Filtrado por categoría
+
+## Pruebas
+
+El proyecto incluye pruebas unitarias y funcionales que verifican que todas las funcionalidades están trabajando correctamente:
+
+```bash
+php artisan test
+```
+
+Las pruebas cubren:
+
+- Modelo de Producto: atributos fillable, relaciones con categorías y etiquetas
+- Controlador de Productos: operaciones CRUD completas
+- Filtros y búsqueda: funcionalidad de filtrado por nombre y categoría
+- Configuración del sistema: paginación con Bootstrap
+
+> **Nota**: Las advertencias sobre metadatos en comentarios doc (`/** @test */`) son normales y no afectan la funcionalidad de las pruebas. En versiones futuras de PHPUnit (v12+), se deberá migrar a usar atributos de PHP (`#[Test]`).
+
+### Requisitos para pruebas
+
+Para ejecutar las pruebas que involucran imágenes, necesitas tener instalada la extensión GD de PHP:
+
+```bash
+# En sistemas basados en Debian/Ubuntu
+sudo apt-get install php8.1-gd  # Ajusta la versión según tu instalación de PHP
+
+# En sistemas basados en RHEL/CentOS
+sudo yum install php-gd
+
+# En macOS con Homebrew
+brew install php@8.1  # Normalmente GD viene incluido
+```
+
+## Capturas de Pantalla
+
+(Aquí puedes incluir algunas capturas de la aplicación)
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT.
