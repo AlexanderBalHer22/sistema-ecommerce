@@ -45,6 +45,7 @@
 
                         <!-- Authentication Links -->
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
+
                             <x-cart-button />
 
                             @guest
