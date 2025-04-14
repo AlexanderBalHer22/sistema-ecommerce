@@ -26,7 +26,7 @@ class ProductController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        $products = $query->with('category')->paginate(10);
+        $products = $query->with('category')->paginate(12);
         $categories = Category::all();
 
         return view('products.index', compact('products', 'categories'));
@@ -54,6 +54,9 @@ class ProductController extends Controller
 
         // Generar slug
         $validated['slug'] = Str::slug($validated['name']);
+
+        // Establecer moneda
+        $validated['currency'] = 'MXN';
 
         // Subir imagen si existe
         if ($request->hasFile('image')) {
@@ -111,6 +114,9 @@ class ProductController extends Controller
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
         ]);
+
+        // Aseguramos que se mantiene la moneda
+        $validated['currency'] = 'MXN';
 
         // Capturar datos antiguos para auditoría
         $oldData = [
